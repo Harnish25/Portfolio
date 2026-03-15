@@ -63,11 +63,11 @@ export function ScrollMorphCapabilities({
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
   return (
-    <section className="relative py-28 overflow-hidden bg-black">
+    <section className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-black">
       {/* Top divider glow */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -79,18 +79,18 @@ export function ScrollMorphCapabilities({
           <motion.div variants={itemVariants} className="text-center space-y-4">
             <div className="flex items-center justify-center gap-3">
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-fuchsia-400/60" />
-              <p className="text-xs font-bold uppercase tracking-[0.4em] text-fuchsia-400">
+              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-fuchsia-400 sm:text-xs sm:tracking-[0.4em]">
                 Expertise
               </p>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-fuchsia-400/60" />
             </div>
-            <h2 className="text-5xl font-bold text-white md:text-6xl">
+            <h2 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
               What I{" "}
               <span className="bg-gradient-to-r from-fuchsia-300 to-cyan-400 bg-clip-text text-transparent">
                 Deliver
               </span>
             </h2>
-            <p className="max-w-2xl mx-auto text-white/50 text-lg">
+            <p className="max-w-2xl mx-auto text-white/50 text-base sm:text-lg">
               Crafting digital experiences that blend creativity, performance, and cutting-edge technology
             </p>
           </motion.div>
@@ -103,7 +103,7 @@ export function ScrollMorphCapabilities({
             <div className="relative">
               {/* Glow effect behind globe */}
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-fuchsia-500/20 to-violet-500/20 blur-3xl" />
-              <Globe className="relative z-10" />
+              <Globe className="relative z-10 max-w-[16rem] sm:max-w-xs md:max-w-sm" />
             </div>
           </motion.div>
 
@@ -119,7 +119,7 @@ export function ScrollMorphCapabilities({
                   key={index}
                   variants={itemVariants}
                   whileHover={prefersReducedMotion ? {} : { y: -8, scale: 1.02 }}
-                  className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6 backdrop-blur-xl transition-all duration-500 hover:border-cyan-400/30"
+                  className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-5 sm:p-6 backdrop-blur-xl transition-all duration-500 hover:border-cyan-400/30"
                 >
                   {/* Gradient accent on hover */}
                   <div
@@ -136,7 +136,7 @@ export function ScrollMorphCapabilities({
                     </div>
 
                     {/* Capability Text */}
-                    <h3 className="text-lg font-semibold text-white leading-snug">
+                    <h3 className="text-base font-semibold text-white leading-snug sm:text-lg">
                       {capability}
                     </h3>
 

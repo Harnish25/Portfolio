@@ -42,7 +42,7 @@ export function MagneticButton({ href, children, variant = "primary" }: Magnetic
     >
       <Link
         href={href}
-        className={`inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.18)] ${baseClass}`}
+        className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.18)] sm:px-6 sm:py-3 ${baseClass}`}
       >
         {children}
       </Link>
