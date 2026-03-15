@@ -1,0 +1,20 @@
+{
+  "name": "Harnish Patel - Creative Frontend Developer",
+  "short_name": "Harnish Patel",
+  "description": "Premium portfolio showcasing modern web design, advanced animations, and high-conversion digital experiences.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00d9ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["portfolio", "design", "development"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

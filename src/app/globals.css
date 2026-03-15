@@ -1,26 +1,206 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+/* ─── Permanent Dark / Neon Theme ───────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+
+  /* Backgrounds */
+  --background: #000000;
+  --foreground: #f0f6ff;
+
+  /* Surfaces (glassmorphism) */
+  --surface:          rgba(8, 17, 48, 0.68);
+  --surface-strong:   rgba(5, 10, 32, 0.85);
+  --surface-soft:     rgba(255, 255, 255, 0.05);
+  --surface-elevated: rgba(8, 17, 48, 0.92);
+
+  /* Borders */
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(0, 217, 255, 0.25);
+
+  /* Text */
+  --text-primary:   #f0f6ff;
+  --text-secondary: rgba(220, 230, 255, 0.78);
+  --text-muted:     rgba(148, 163, 200, 0.72);
+
+  /* Neon cyan accent */
+  --accent:        #00d9ff;
+  --accent-strong: #22d3ee;
+  --accent-soft:   rgba(0, 217, 255, 0.12);
+
+  /* Glow */
+  --shadow-glow: 0 0 40px rgba(0, 217, 255, 0.18), 0 0 80px rgba(168, 85, 247, 0.08);
+
+  /* Misc */
+  --selection-bg:           rgba(0, 217, 255, 0.28);
+  --selection-text:         #ffffff;
+  --scrollbar-thumb:        rgba(0, 217, 255, 0.2);
+  --scrollbar-thumb-hover:  rgba(0, 217, 255, 0.38);
+  --radius: 0.625rem;
+
+  /* shadcn compat */
+  --card:                     rgba(8, 17, 48, 0.68);
+  --card-foreground:          #f0f6ff;
+  --popover:                  rgba(8, 17, 48, 0.95);
+  --popover-foreground:       #f0f6ff;
+  --primary:                  #00d9ff;
+  --primary-foreground:       #05081a;
+  --secondary:                rgba(255, 255, 255, 0.06);
+  --secondary-foreground:     #f0f6ff;
+  --muted:                    rgba(255, 255, 255, 0.06);
+  --muted-foreground:         rgba(148, 163, 200, 0.72);
+  --accent-foreground:        #05081a;
+  --destructive:              oklch(0.58 0.22 27);
+  --input:                    rgba(255, 255, 255, 0.08);
+  --ring:                     rgba(0, 217, 255, 0.4);
+  --border:                   rgba(255, 255, 255, 0.08);
+
+  --chart-1: oklch(0.809 0.105 251.813);
+  --chart-2: oklch(0.623 0.214 259.815);
+  --chart-3: oklch(0.546 0.245 262.881);
+  --chart-4: oklch(0.488 0.243 264.376);
+  --chart-5: oklch(0.424 0.199 265.638);
+
+  --sidebar:                      rgba(8, 17, 48, 0.92);
+  --sidebar-foreground:           #f0f6ff;
+  --sidebar-primary:              #00d9ff;
+  --sidebar-primary-foreground:   #05081a;
+  --sidebar-accent:               rgba(255, 255, 255, 0.06);
+  --sidebar-accent-foreground:    #f0f6ff;
+  --sidebar-border:               rgba(255, 255, 255, 0.08);
+  --sidebar-ring:                 rgba(0, 217, 255, 0.4);
 }
 
+/* ─── Tailwind theme tokens ──────────────────────────────────── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-card:                   var(--card);
+  --color-card-foreground:        var(--card-foreground);
+  --color-popover:                var(--popover);
+  --color-popover-foreground:     var(--popover-foreground);
+  --color-primary:                var(--primary);
+  --color-primary-foreground:     var(--primary-foreground);
+  --color-secondary:              var(--secondary);
+  --color-secondary-foreground:   var(--secondary-foreground);
+  --color-muted:                  var(--muted);
+  --color-muted-foreground:       var(--muted-foreground);
+  --color-accent:                 var(--accent);
+  --color-accent-foreground:      var(--accent-foreground);
+  --color-destructive:            var(--destructive);
+  --color-border:                 var(--border);
+  --color-input:                  var(--input);
+  --color-ring:                   var(--ring);
+  --color-chart-1:                var(--chart-1);
+  --color-chart-2:                var(--chart-2);
+  --color-chart-3:                var(--chart-3);
+  --color-chart-4:                var(--chart-4);
+  --color-chart-5:                var(--chart-5);
+  --color-sidebar:                var(--sidebar);
+  --color-sidebar-foreground:     var(--sidebar-foreground);
+  --color-sidebar-primary:        var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:         var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border:         var(--sidebar-border);
+  --color-sidebar-ring:           var(--sidebar-ring);
+
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Global resets ──────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(ellipse at 20% 0%, rgba(0, 217, 255, 0.07) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 10%, rgba(168, 85, 247, 0.07) 0%, transparent 45%),
+              var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: var(--scrollbar-thumb); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+
+/* ─── Design-system utility classes ─────────────────────────── */
+.ds-surface {
+  background: var(--surface);
+  border-color: var(--border);
+}
+.ds-surface-strong {
+  background: var(--surface-strong);
+  border-color: var(--border);
+}
+.ds-surface-soft {
+  background: var(--surface-soft);
+  border-color: var(--border);
+}
+
+.ds-text-primary   { color: var(--text-primary); }
+.ds-text-secondary { color: var(--text-secondary); }
+.ds-text-muted     { color: var(--text-muted); }
+.ds-accent         { color: var(--accent); }
+.ds-border         { border-color: var(--border); }
+.ds-border-strong  { border-color: var(--border-strong); }
+.ds-glow           { box-shadow: var(--shadow-glow); }
+
+/* ─── Animation keyframes ────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25%       { transform: translateY(-20px) translateX(10px); }
+  50%       { transform: translateY(-40px) translateX(-10px); }
+  75%       { transform: translateY(-20px) translateX(15px); }
+}
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25%       { transform: translateY(-30px) translateX(-15px); }
+  50%       { transform: translateY(-50px) translateX(10px); }
+  75%       { transform: translateY(-25px) translateX(-20px); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25%       { transform: translateY(-15px) translateX(20px); }
+  50%       { transform: translateY(-35px) translateX(-15px); }
+  75%       { transform: translateY(-20px) translateX(10px); }
+}
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 8px)); }
+}
+
+.animate-float         { animation: float 8s ease-in-out infinite; }
+.animate-float-delayed { animation: float-delayed 10s ease-in-out infinite; animation-delay: 2s; }
+.animate-float-slow    { animation: float-slow 12s ease-in-out infinite; animation-delay: 4s; }
+.animate-marquee       { animation: marquee 30s linear infinite; }
+
+/* ─── Tailwind base layer ────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
 }

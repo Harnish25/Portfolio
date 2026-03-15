@@ -1,0 +1,12 @@
+# robots.txt for Harnish Patel Portfolio
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow crawling of Next.js specific directories
+Disallow: /_next/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://harnishpatel.dev/sitemap.xml
