@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Harnish Patel - Creative Frontend Developer",
     description: "Cinematic digital experiences with premium motion and immersive layouts",
-    creator: "@harnishpatel",
+    creator: "@Harnish25",
   },
   robots: {
     index: true,
@@ -82,15 +82,15 @@ export default function RootLayout({
               "jobTitle": "Creative Frontend Developer & Interaction Designer",
               "description": "Creative frontend developer specializing in premium portfolio websites, high-conversion landing pages, and motion systems.",
               "url": "https://harnishpatel.dev",
-              "email": "hello@harnishpatel.dev",
+              "email": "harnishpatel580@gmail.com",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "New Delhi",
                 "addressCountry": "IN"
               },
               "sameAs": [
-                "https://github.com",
-                "https://linkedin.com",
+                "https://github.com/Harnish25",
+                "https://www.linkedin.com/in/harnishchothani5555/",
                 "https://dribbble.com"
               ],
               "knowsAbout": [

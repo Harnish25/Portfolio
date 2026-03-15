@@ -6,7 +6,7 @@ export const profile = {
   intro:
     "I build high-end portfolio websites, landing pages, and product experiences that blend storytelling, performance, and modern animation systems.",
   location: "Based in New Delhi, available worldwide",
-  email: "hello@harnishpatel.dev",
+  email: "harnishpatel580@gmail.com",
   availability: "Available for freelance projects in 2026",
   resumeLabel: "Download Résumé",
 };
@@ -120,8 +120,8 @@ export const testimonials = [
 ];
 
 export const socialLinks = [
-  { label: "GitHub", href: "https://github.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
+  { label: "GitHub", href: "https://github.com/Harnish25" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/harnishchothani5555/" },
   { label: "Behance", href: "https://behance.net" },
   { label: "Dribbble", href: "https://dribbble.com" },
 ];

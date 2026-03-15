@@ -32,12 +32,13 @@ export function ParallaxSection({
     const element = sectionRef.current;
     if (!element) return;
 
-    // Check for reduced motion preference
+    // Disable parallax for reduced motion users and mobile screens
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    const isMobileView = window.matchMedia("(max-width: 767px)").matches;
 
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || isMobileView) return;
 
     // Parallax animation with increased power
     const animation: any = {

@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail, ExternalLink, Zap, Layers, TrendingUp, Rocket } from "lucide-react";
-import { Suspense, lazy } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Github, Linkedin, Mail, ExternalLink, Menu, X, Zap, Layers, TrendingUp, Rocket } from "lucide-react";
+import { Suspense, lazy, useState } from "react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { MagneticButton } from "@/components/MagneticButton";
 import { InfiniteTicker } from "@/components/InfiniteTicker";
@@ -37,6 +37,10 @@ const itemVariants = {
 const processIcons = [Zap, Layers, TrendingUp, Rocket];
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
   return (
     <div id="main-content" className="relative min-h-screen overflow-x-hidden bg-black text-white">
 
@@ -49,6 +53,7 @@ export default function Home() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
           <Logo size="md" className="sm:h-12 sm:w-12 h-10 w-10" />
+
           <div className="hidden items-center gap-6 lg:flex xl:gap-8">
             {navItems.map((item) => (
               <motion.a
@@ -61,12 +66,61 @@ export default function Home() {
               </motion.a>
             ))}
           </div>
+
           <div className="hidden sm:flex">
             <MagneticButton href="#contact" variant="secondary">
               Get in touch
             </MagneticButton>
           </div>
+
+          <motion.button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            whileTap={{ scale: 0.95 }}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-cyan-400/20 bg-white/[0.05] text-cyan-300 backdrop-blur-xl transition-colors duration-300 hover:border-cyan-400/40 hover:bg-cyan-400/10 lg:hidden"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </motion.button>
         </div>
+
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              id="mobile-navigation"
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="border-t border-white/[0.06] bg-[rgba(5,8,26,0.92)] px-4 py-4 backdrop-blur-2xl lg:hidden"
+            >
+              <div className="mx-auto flex max-w-7xl flex-col gap-3">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.label}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    transition={{ duration: 0.2, delay: index * 0.05 }}
+                    className="rounded-2xl border border-white/[0.06] bg-white/[0.04] px-4 py-3 text-sm font-medium text-white/75 transition-all duration-300 hover:border-cyan-400/30 hover:bg-cyan-400/10 hover:text-cyan-300"
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
+
+                <div className="pt-2 sm:hidden" onClick={closeMobileMenu}>
+                  <MagneticButton href="#contact" variant="secondary">
+                    Get in touch
+                  </MagneticButton>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* ── Hero ───────────────────────────────────────────────── */}
@@ -111,9 +165,9 @@ export default function Home() {
                 </motion.div>
                 <motion.div variants={itemVariants} className="flex flex-wrap gap-3 pt-2 sm:gap-4">
                   {[
-                    { icon: Github, href: "https://github.com" },
-                    { icon: Linkedin, href: "https://linkedin.com" },
-                    { icon: Mail, href: "mailto:hello@example.com" },
+                    { icon: Github, href: "https://github.com/Harnish25" },
+                    { icon: Linkedin, href: "https://www.linkedin.com/in/harnishchothani5555/" },
+                    { icon: Mail, href: "mailto:harnishpatel580@gmail.com" },
                   ].map(({ icon: Icon, href }) => (
                     <motion.a
                       key={href} href={href} target="_blank" rel="noopener noreferrer"
@@ -365,7 +419,7 @@ export default function Home() {
               variants={itemVariants}
               className="flex flex-col gap-4 sm:flex-row sm:justify-center"
             >
-              <MagneticButton href="mailto:hello@example.com">
+              <MagneticButton href="mailto:harnishpatel580@gmail.com">
                 Send me an email <ExternalLink className="ml-2 h-4 w-4" />
               </MagneticButton>
               <MagneticButton href="#" variant="secondary">Schedule a call</MagneticButton>
@@ -391,8 +445,8 @@ export default function Home() {
             <p className="text-sm text-white/25">© 2025 Harnish Patel · All rights reserved</p>
             <div className="flex gap-6">
               {[
-                { label: "GitHub", href: "https://github.com" },
-                { label: "LinkedIn", href: "https://linkedin.com" },
+                { label: "GitHub", href: "https://github.com/Harnish25" },
+                { label: "LinkedIn", href: "https://www.linkedin.com/in/harnishchothani5555/" },
                 { label: "Dribbble", href: "https://dribbble.com" },
               ].map(({ label, href }) => (
                 <motion.a
