@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Globe } from "@/components/ui/Globe";
+import { BouncingBalls } from "@/components/ui/BouncingBalls";
 import { Code, Zap, Palette, Rocket, Gauge, Sparkles } from "lucide-react";
 
 // Icon mapping for each capability
@@ -64,10 +65,22 @@ export function ScrollMorphCapabilities({
   }, []);
   return (
     <section className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-black">
-      {/* Top divider glow */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+      {/* Bouncing Balls Background */}
+      <BouncingBalls
+        numBalls={110}
+        colors={["rgba(217,70,239,0.5)", "rgba(0,217,255,0.5)", "rgba(168,85,247,0.4)", "rgba(139,92,246,0.5)"]}
+        minRadius={0.5}
+        maxRadius={2.5}
+        speed={0.25}
+        interactionRadius={110}
+        interactionScale={4.5}
+        interactive={true}
+        className="pointer-events-auto z-0"
+      />
+      {/* Gradient overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none z-[1]" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -79,14 +92,15 @@ export function ScrollMorphCapabilities({
           <motion.div variants={itemVariants} className="text-center space-y-4">
             <div className="flex items-center justify-center gap-3">
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-fuchsia-400/60" />
-              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-fuchsia-400 sm:text-xs sm:tracking-[0.4em]">
+              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-fuchsia-400 drop-shadow-[0_0_10px_rgba(217,70,239,0.8)] sm:text-xs sm:tracking-[0.4em]">
                 Expertise
               </p>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-fuchsia-400/60" />
             </div>
             <h2 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
-              What I{" "}
-              <span className="bg-gradient-to-r from-fuchsia-300 to-cyan-400 bg-clip-text text-transparent">
+              <span className="drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">What I</span>{" "}
+              <span className="bg-gradient-to-r from-fuchsia-300 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(217,70,239,0.6)]"
+                style={{ filter: 'drop-shadow(0 0 20px rgba(0,217,255,0.5))' }}>
                 Deliver
               </span>
             </h2>
@@ -151,9 +165,6 @@ export function ScrollMorphCapabilities({
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Bottom divider glow */}
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
     </section>
   );
 }

@@ -9,7 +9,7 @@ import { InfiniteTicker } from "@/components/InfiniteTicker";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ScrollMorphCapabilities } from "@/components/ScrollMorphCapabilities";
 import { Logo } from "@/components/Logo";
-import { ParallaxSection } from "@/components/ParallaxSection";
+import { BouncingBalls } from "@/components/ui/BouncingBalls";
 
 // Lazy load TubesBackground to prevent blocking
 const TubesBackground = lazy(() => import("@/components/ui/neon-flow").then(mod => ({ default: mod.TubesBackground })));
@@ -21,7 +21,7 @@ import {
   capabilities,
   processSteps,
   techStack,
-  testimonials,
+  about,
 } from "@/data/portfolio";
 
 const containerVariants = {
@@ -212,33 +212,38 @@ export default function Home() {
       <AnimatedSection className="relative border-y border-cyan-400/[0.12] py-8 sm:py-10 bg-[rgba(0,217,255,0.02)]">
         {/* Subtle horizontal glow line */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-3/4 bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
-        <ParallaxSection speed={-0.4}>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <InfiniteTicker items={techStack} />
-          </div>
-        </ParallaxSection>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <InfiniteTicker items={techStack} />
+        </div>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px w-3/4 bg-gradient-to-r from-transparent via-purple-400/30 to-transparent" />
       </AnimatedSection>
 
       {/* ── Ambient glow orbs for lower sections ───────────────── */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
-        <ParallaxSection speed={0.3}>
-          <div className="absolute top-[110vh] left-[-10%] h-[600px] w-[600px] rounded-full bg-cyan-500/[0.04] blur-[120px]" />
-        </ParallaxSection>
-        <ParallaxSection speed={-0.4}>
-          <div className="absolute top-[160vh] right-[-10%] h-[500px] w-[500px] rounded-full bg-purple-600/[0.05] blur-[100px]" />
-        </ParallaxSection>
-        <ParallaxSection speed={0.5}>
-          <div className="absolute top-[240vh] left-[20%] h-[400px] w-[400px] rounded-full bg-fuchsia-500/[0.04] blur-[90px]" />
-        </ParallaxSection>
-        <ParallaxSection speed={-0.3}>
-          <div className="absolute top-[330vh] right-[10%] h-[450px] w-[450px] rounded-full bg-cyan-400/[0.04] blur-[100px]" />
-        </ParallaxSection>
+        <div className="absolute top-[110vh] left-[-10%] h-[600px] w-[600px] rounded-full bg-cyan-500/[0.04] blur-[120px]" />
+        <div className="absolute top-[160vh] right-[-10%] h-[500px] w-[500px] rounded-full bg-purple-600/[0.05] blur-[100px]" />
+        <div className="absolute top-[240vh] left-[20%] h-[400px] w-[400px] rounded-full bg-fuchsia-500/[0.04] blur-[90px]" />
+        <div className="absolute top-[330vh] right-[10%] h-[450px] w-[450px] rounded-full bg-cyan-400/[0.04] blur-[100px]" />
       </div>
 
       {/* ── Featured Projects ──────────────────────────────────── */}
-      <AnimatedSection id="projects" className="relative py-20 sm:py-24 lg:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <AnimatedSection id="projects" className="relative py-20 sm:py-24 lg:py-28 overflow-hidden">
+        {/* Bouncing Balls Background */}
+        <BouncingBalls
+          numBalls={120}
+          colors={["rgba(0,217,255,0.6)", "rgba(168,85,247,0.5)", "rgba(236,72,153,0.4)", "rgba(34,211,238,0.5)"]}
+          minRadius={0.5}
+          maxRadius={2.5}
+          speed={0.3}
+          interactionRadius={120}
+          interactionScale={5}
+          interactive={true}
+          className="pointer-events-auto z-0"
+        />
+        {/* Gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none z-[1]" />
+        
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 overflow-hidden">
           <motion.div
             variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="space-y-16"
@@ -247,11 +252,12 @@ export default function Home() {
             <motion.div variants={itemVariants} className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="h-px flex-1 max-w-[48px] bg-gradient-to-r from-cyan-400/60 to-transparent" />
-                <p className="text-xs font-bold uppercase tracking-[0.4em] text-cyan-400">Featured Work</p>
+                <p className="text-xs font-bold uppercase tracking-[0.4em] text-cyan-400 drop-shadow-[0_0_10px_rgba(0,217,255,0.8)]">Featured Work</p>
               </div>
               <h2 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
-                Selected{" "}
-                <span className="bg-gradient-to-r from-cyan-300 to-fuchsia-400 bg-clip-text text-transparent">
+                <span className="drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">Selected</span>{" "}
+                <span className="bg-gradient-to-r from-cyan-300 to-fuchsia-400 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(0,217,255,0.6)]"
+                  style={{ filter: 'drop-shadow(0 0 20px rgba(217,70,239,0.5))' }}>
                   Projects
                 </span>
               </h2>
@@ -262,11 +268,9 @@ export default function Home() {
 
             <motion.div variants={containerVariants} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {featuredProjects.map((project, index) => (
-                <ParallaxSection key={index} speed={0.5 + index * 0.3}>
-                  <motion.div variants={itemVariants}>
-                    <ProjectCard {...project} />
-                  </motion.div>
-                </ParallaxSection>
+                <motion.div key={index} variants={itemVariants}>
+                  <ProjectCard {...project} />
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>
@@ -274,10 +278,22 @@ export default function Home() {
       </AnimatedSection>
 
       {/* ── Process ────────────────────────────────────────────── */}
-      <AnimatedSection id="process" className="relative py-20 sm:py-24 lg:py-28">
-        {/* Top divider glow */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <AnimatedSection id="process" className="relative py-20 sm:py-24 lg:py-28 overflow-hidden">
+        {/* Bouncing Balls Background */}
+        <BouncingBalls
+          numBalls={100}
+          colors={["rgba(168,85,247,0.5)", "rgba(0,217,255,0.5)", "rgba(236,72,153,0.4)", "rgba(139,92,246,0.5)"]}
+          minRadius={0.5}
+          maxRadius={2.5}
+          speed={0.25}
+          interactionRadius={100}
+          interactionScale={4}
+          interactive={true}
+          className="pointer-events-auto z-0"
+        />
+        {/* Gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none z-[1]" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 overflow-hidden">
           <motion.div
             variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="space-y-16"
@@ -285,11 +301,12 @@ export default function Home() {
             <motion.div variants={itemVariants} className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="h-px flex-1 max-w-[48px] bg-gradient-to-r from-purple-400/60 to-transparent" />
-                <p className="text-xs font-bold uppercase tracking-[0.4em] text-purple-400">How I Work</p>
+                <p className="text-xs font-bold uppercase tracking-[0.4em] text-purple-400 drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]">How I Work</p>
               </div>
               <h2 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
-                My{" "}
-                <span className="bg-gradient-to-r from-purple-300 to-cyan-400 bg-clip-text text-transparent">
+                <span className="drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">My</span>{" "}
+                <span className="bg-gradient-to-r from-purple-300 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(168,85,247,0.6)]"
+                  style={{ filter: 'drop-shadow(0 0 20px rgba(0,217,255,0.5))' }}>
                   Process
                 </span>
               </h2>
@@ -299,12 +316,7 @@ export default function Home() {
               {processSteps.map((step, index) => {
                 const Icon = processIcons[index];
                 return (
-                  <ParallaxSection key={index} speed={index % 2 === 0 ? -0.6 : 0.6}>
-                    <motion.div
-                      variants={itemVariants}
-                      whileHover={{ y: -6, borderColor: "rgba(0,217,255,0.3)" }}
-                      className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 sm:p-8 backdrop-blur-xl transition-all duration-500 h-full"
-                    >
+                  <motion.div key={index} variants={itemVariants} whileHover={{ y: -6, borderColor: "rgba(0,217,255,0.3)" }} className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 sm:p-8 backdrop-blur-xl transition-all duration-500 h-full">
                     {/* Corner glow on hover */}
                     <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-cyan-400/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     <div className="relative z-10 flex flex-col gap-5">
@@ -319,23 +331,34 @@ export default function Home() {
                         <p className="text-white/50 leading-7 text-sm">{step.text}</p>
                       </div>
                     </div>
-                    </motion.div>
-                  </ParallaxSection>
+                  </motion.div>
                 );
               })}
             </motion.div>
           </motion.div>
         </div>
-        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
       </AnimatedSection>
 
       {/* ── Capabilities ───────────────────────────────────────── */}
       <ScrollMorphCapabilities capabilities={capabilities} />
 
-      {/* ── Testimonials ───────────────────────────────────────── */}
-      <AnimatedSection className="relative py-20 sm:py-24 lg:py-28">
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      {/* ── About ───────────────────────────────────────────── */}
+      <AnimatedSection id="about" className="relative py-20 sm:py-24 lg:py-28 overflow-hidden">
+        {/* Bouncing Balls Background */}
+        <BouncingBalls
+          numBalls={100}
+          colors={["rgba(0,217,255,0.5)", "rgba(56,189,248,0.5)", "rgba(34,211,238,0.4)", "rgba(6,182,212,0.5)"]}
+          minRadius={0.5}
+          maxRadius={2.5}
+          speed={0.25}
+          interactionRadius={100}
+          interactionScale={4}
+          interactive={true}
+          className="pointer-events-auto z-0"
+        />
+        {/* Gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none z-[1]" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 overflow-hidden">
           <motion.div
             variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="space-y-16"
@@ -343,66 +366,88 @@ export default function Home() {
             <motion.div variants={itemVariants} className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="h-px flex-1 max-w-[48px] bg-gradient-to-r from-cyan-400/60 to-transparent" />
-                <p className="text-xs font-bold uppercase tracking-[0.4em] text-cyan-400">Social Proof</p>
+                <p className="text-xs font-bold uppercase tracking-[0.4em] text-cyan-400 drop-shadow-[0_0_10px_rgba(0,217,255,0.8)]">Get to Know Me</p>
               </div>
               <h2 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
-                Client{" "}
-                <span className="bg-gradient-to-r from-cyan-300 to-sky-400 bg-clip-text text-transparent">
-                  Testimonials
+                <span className="drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">About</span>{" "}
+                <span className="bg-gradient-to-r from-cyan-300 to-sky-400 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(0,217,255,0.6)]"
+                  style={{ filter: 'drop-shadow(0 0 20px rgba(56,189,248,0.5))' }}>
+                  Me
                 </span>
               </h2>
             </motion.div>
 
-            <motion.div variants={containerVariants} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((testimonial, index) => (
-                <ParallaxSection key={index} speed={0.4 + index * 0.2} opacity={true}>
-                  <motion.div
-                    variants={itemVariants}
-                    whileHover={{ y: -8 }}
-                    className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6 sm:p-8 backdrop-blur-xl transition-all duration-500 hover:border-cyan-400/20"
-                  >
-                  {/* Quote mark accent */}
-                  <div className="absolute -top-4 -left-2 text-8xl font-black text-cyan-400/10 select-none leading-none">"</div>
-                  {/* Hover glow */}
-                  <div className="absolute -bottom-8 -right-8 h-24 w-24 rounded-full bg-cyan-400/[0.07] blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
+              {/* About Content */}
+              <motion.div variants={itemVariants} className="space-y-6">
+                <h3 className="text-2xl font-semibold text-white sm:text-3xl">
+                  {about.headline}
+                </h3>
+                <div className="space-y-4">
+                  {about.description.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="text-white/60 leading-7 text-base sm:text-lg">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </motion.div>
 
-                  <div className="relative z-10 flex flex-col gap-6">
-                    <p className="text-white/65 leading-7 italic">"{testimonial.quote}"</p>
-                    <div className="flex items-center gap-3 pt-2 border-t border-white/[0.06]">
-                      {/* Avatar initial */}
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full border border-cyan-400/25 bg-cyan-400/10 text-sm font-bold text-cyan-300">
-                        {testimonial.name.charAt(0)}
-                      </div>
-                      <div>
-                        <p className="font-semibold text-white text-sm">{testimonial.name}</p>
-                        <p className="text-xs text-white/40">{testimonial.role}</p>
-                      </div>
+              {/* Highlights Grid */}
+              <motion.div variants={containerVariants} className="grid grid-cols-2 gap-4 sm:gap-6">
+                {about.highlights.map((highlight, index) => (
+                  <motion.div
+                    key={index}
+                    variants={itemVariants}
+                    whileHover={{ y: -6, borderColor: "rgba(0,217,255,0.3)" }}
+                    className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-5 sm:p-6 backdrop-blur-xl transition-all duration-500"
+                  >
+                    {/* Corner glow on hover */}
+                    <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-cyan-400/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    
+                    <div className="relative z-10">
+                      <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/40 mb-2">
+                        {highlight.label}
+                      </p>
+                      <p className="text-xl font-bold text-cyan-300 drop-shadow-[0_0_12px_rgba(0,217,255,0.5)] sm:text-2xl">
+                        {highlight.value}
+                      </p>
                     </div>
-                  </div>
                   </motion.div>
-                </ParallaxSection>
-              ))}
-            </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </motion.div>
         </div>
-        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
       </AnimatedSection>
 
       {/* ── CTA ────────────────────────────────────────────────── */}
       <AnimatedSection id="contact" className="relative py-24 sm:py-28 lg:py-32 overflow-hidden">
+        {/* Bouncing Balls Background */}
+        <BouncingBalls
+          numBalls={120}
+          colors={["rgba(0,217,255,0.5)", "rgba(168,85,247,0.5)", "rgba(236,72,153,0.4)", "rgba(139,92,246,0.5)"]}
+          minRadius={0.5}
+          maxRadius={2.5}
+          speed={0.3}
+          interactionRadius={120}
+          interactionScale={5}
+          interactive={true}
+          className="pointer-events-auto z-0"
+        />
+        {/* Gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none z-[1]" />
         {/* Big ambient glow behind CTA */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center z-[2]">
           <div className="h-[500px] w-[700px] rounded-full bg-cyan-500/[0.06] blur-[100px]" />
           <div className="absolute h-[300px] w-[500px] rounded-full bg-purple-600/[0.06] blur-[80px]" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center">
-          <ParallaxSection speed={-0.5} scale={true}>
-            <motion.div
-              variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-              className="space-y-10"
-            >
-              <motion.div variants={itemVariants} className="space-y-6">
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center overflow-hidden">
+          <motion.div
+            variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
+            className="space-y-10"
+          >
+            <motion.div variants={itemVariants} className="space-y-6">
               <p className="text-xs font-bold uppercase tracking-[0.4em] text-cyan-400">Let's Work Together</p>
               <h2 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
                 Ready to create{" "}
@@ -423,9 +468,8 @@ export default function Home() {
                 Send me an email <ExternalLink className="ml-2 h-4 w-4" />
               </MagneticButton>
               <MagneticButton href="#" variant="secondary">Schedule a call</MagneticButton>
-              </motion.div>
             </motion.div>
-          </ParallaxSection>
+          </motion.div>
         </div>
       </AnimatedSection>
 

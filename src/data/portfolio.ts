@@ -11,6 +11,19 @@ export const profile = {
   resumeLabel: "Download Résumé",
 };
 
+export const about = {
+  headline: "Crafting digital experiences that leave lasting impressions",
+  description: `I'm a passionate frontend developer with a keen eye for design and a love for creating seamless user experiences. With expertise in modern web technologies, I transform ideas into polished, high-performance digital products.
+
+My approach combines technical excellence with creative vision — every project is an opportunity to push boundaries and deliver something extraordinary. I believe in clean code, thoughtful animations, and interfaces that feel intuitive and delightful to use.`,
+  highlights: [
+    { label: "Experience", value: "5+ Years" },
+    { label: "Location", value: "New Delhi, India" },
+    { label: "Availability", value: "Open to Projects" },
+    { label: "Focus", value: "Frontend & Motion" },
+  ],
+};
+
 export const navItems = [
   { label: "Work", href: "#projects" },
   { label: "Process", href: "#process" },

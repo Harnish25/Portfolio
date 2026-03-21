@@ -17,7 +17,7 @@ export function AnimatedSection({ id, className = "", children }: AnimatedSectio
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.8 }}
-      className={className}
+      className={`overflow-hidden ${className}`}
     >
       {children}
     </motion.section>
