@@ -34,7 +34,7 @@
   --shadow-glow: 0 0 40px rgba(0, 217, 255, 0.18), 0 0 80px rgba(168, 85, 247, 0.08);
 
   /* Misc */
-  --selection-bg:           rgba(0, 217, 255, 0.28);
+  --selection-bg:           rgba(236, 72, 153, 0.4);
   --selection-text:         #ffffff;
   --scrollbar-thumb:        rgba(0, 217, 255, 0.2);
   --scrollbar-thumb-hover:  rgba(0, 217, 255, 0.38);
@@ -132,6 +132,11 @@ body {
 }
 
 ::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+::-moz-selection {
   background-color: var(--selection-bg);
   color: var(--selection-text);
 }

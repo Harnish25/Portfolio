@@ -7,7 +7,7 @@ import { ReactNode, useRef } from "react";
 type MagneticButtonProps = {
   href: string;
   children: ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "whatsapp";
 };
 
 export function MagneticButton({ href, children, variant = "primary" }: MagneticButtonProps) {
@@ -21,6 +21,8 @@ export function MagneticButton({ href, children, variant = "primary" }: Magnetic
   const baseClass =
     variant === "primary"
       ? "bg-gradient-to-r from-cyan-300 via-sky-300 to-fuchsia-300 text-slate-950 shadow-[0_0_40px_rgba(34,211,238,0.2)]"
+      : variant === "whatsapp"
+      ? "bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white shadow-[0_0_40px_rgba(37,211,102,0.3)] hover:shadow-[0_0_50px_rgba(37,211,102,0.4)]"
       : "border border-white/20 bg-white/[0.06] text-white/85 backdrop-blur-xl hover:border-cyan-400/35 hover:bg-white/[0.1]";
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {

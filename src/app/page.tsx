@@ -467,7 +467,7 @@ export default function Home() {
               <MagneticButton href="mailto:harnishpatel580@gmail.com">
                 Send me an email <ExternalLink className="ml-2 h-4 w-4" />
               </MagneticButton>
-              <MagneticButton href="#" variant="secondary">Schedule a call</MagneticButton>
+              <MagneticButton href="https://wa.me/918200275025?text=Hello%20Harnish" variant="whatsapp">Message on WhatsApp</MagneticButton>
             </motion.div>
           </motion.div>
         </div>
@@ -491,7 +491,6 @@ export default function Home() {
               {[
                 { label: "GitHub", href: "https://github.com/Harnish25" },
                 { label: "LinkedIn", href: "https://www.linkedin.com/in/harnishchothani5555/" },
-                { label: "Dribbble", href: "https://dribbble.com" },
               ].map(({ label, href }) => (
                 <motion.a
                   key={label} href={href} target="_blank" rel="noopener noreferrer"
